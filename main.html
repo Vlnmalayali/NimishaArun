@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nimisha &amp; Arun — Wedding Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ivory: #FBF5EA;
+            --ivory-deep: #F3E9D6;
+            --maroon: #7B1E2B;
+            --maroon-deep: #54121C;
+            --gold: #B8892B;
+            --gold-light: #E4C77D;
+            --rose: #E3A6AC;
+            --sage: #7C8B6A;
+            --ink: #3B2A1F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--ivory);
+            color: var(--ink);
+            font-family: 'Cormorant Garamond', serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image:
+                radial-gradient(circle at 20% 15%, rgba(184, 137, 43, 0.05) 0, transparent 45%),
+                radial-gradient(circle at 85% 80%, rgba(123, 30, 43, 0.05) 0, transparent 45%);
+        }
+
+        .eyebrow {
+            font-family: 'Cinzel', serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.32em;
+            color: var(--gold);
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .script {
+            font-family: 'Mrs Saint Delafield', cursive;
+            color: var(--maroon-deep);
+            line-height: 1;
+        }
+
+        /* ---------- scroll reveal ---------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1.visible {
+            transition-delay: 0.15s;
+        }
+
+        .reveal-delay-2.visible {
+            transition-delay: 0.3s;
+        }
+
+        /* ---------- ornament corners on hero ---------- */
+        .frame-corner {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            opacity: 0;
+            animation: cornerIn 1.4s ease forwards;
+            z-index: 2;
+        }
+
+        .frame-corner svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .frame-tl {
+            top: 16px;
+            left: 16px;
+            animation-delay: 0.1s;
+        }
+
+        .frame-tr {
+            top: 16px;
+            right: 16px;
+            transform: scaleX(-1);
+            animation-delay: 0.2s;
+        }
+
+        .frame-bl {
+            bottom: 16px;
+            left: 16px;
+            transform: scaleY(-1);
+            animation-delay: 0.3s;
+        }
+
+        .frame-br {
+            bottom: 16px;
+            right: 16px;
+            transform: scale(-1, -1);
+            animation-delay: 0.4s;
+        }
+
+        @keyframes cornerIn {
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hairline {
+            stroke: var(--gold);
+            stroke-width: 1.4;
+            fill: none;
+            stroke-dasharray: 900;
+            stroke-dashoffset: 900;
+            animation: draw 2.2s ease forwards;
+        }
+
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* ---------- hero ---------- */
+        .hero {
+            position: relative;
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 24px;
+            border: 1px solid rgba(184, 137, 43, 0.35);
+            margin: 14px;
+            overflow: hidden;
+        }
+
+        /* reserved space for the user-supplied Ganapathi logo (transparent PNG) */
+        .logo-slot {
+            width: 90px;
+            height: 90px;
+            margin-bottom: 6px;
+            opacity: 0;
+            animation: fadeUp 0.9s ease forwards;
+            animation-delay: 2.65s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .ganapathi-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(184, 137, 43, 0.22));
+            transition: transform 0.4s ease;
+        }
+
+        .logo-slot:hover .ganapathi-img {
+            transform: scale(1.06);
+        }
+
+        .logo-placeholder {
+            width: 100%;
+            height: 100%;
+            border: 1px dashed var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 0.5rem;
+            letter-spacing: 0.05em;
+            text-align: center;
+            opacity: 0.65;
+        }
+
+        /* ---------- real holding hands intro overlay ---------- */
+        .hands-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 6;
+            pointer-events: none;
+            background: var(--ivory);
+            animation: overlayFade 1.0s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 2.0s;
+        }
+
+        @keyframes overlayFade {
+            0% {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            99% {
+                opacity: 0;
+                visibility: visible;
+            }
+
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .hands-stage {
+            position: relative;
+            width: min(600px, 90vw);
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Clasped Interlocked Real Holding Hands Image */
+        .hand-real-clasped {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: min(340px, 68vw);
+            height: auto;
+            opacity: 0;
+            animation: claspedHoldIn 1.85s cubic-bezier(0.2, 0.8, 0.25, 1) forwards;
+            animation-delay: 0.15s;
+            z-index: 3;
+        }
+
+        .hand-real-clasped img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 50%;
+            filter: drop-shadow(0 12px 36px rgba(184, 137, 43, 0.38));
+        }
+
+        @keyframes claspedHoldIn {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+
+            25% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.04);
+            }
+
+            75% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.06);
+            }
+        }
+
+        /* Radiant Gold Aura Pulse */
+        .contact-glow {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(228, 199, 125, 1) 0%, rgba(184, 137, 43, 0.75) 35%, rgba(228, 199, 125, 0) 75%);
+            transform: translate(-50%, -50%) scale(0);
+            animation: glowPulse 1.7s cubic-bezier(0.2, 0.8, 0.25, 1) forwards;
+            animation-delay: 0.15s;
+            filter: drop-shadow(0 0 26px rgba(228, 199, 125, 0.95));
+            z-index: 2;
+        }
+
+        @keyframes glowPulse {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+
+            35% {
+                transform: translate(-50%, -50%) scale(9);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(14);
+                opacity: 0;
+            }
+        }
+
+        /* ---------- hero text sequence ---------- */
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .we-invite {
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 2.3s;
+        }
+
+        .we-invite-line {
+            font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+            letter-spacing: 0.03em;
+            color: var(--ink);
+        }
+
+        .names-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(10px, 3vw, 26px);
+            flex-wrap: wrap;
+            margin-top: 4px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 2.5s;
+        }
+
+        .name {
+            font-size: clamp(3rem, 9.5vw, 5.6rem);
+        }
+
+        .with-word {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--gold);
+            letter-spacing: 0.08em;
+            position: relative;
+            top: 6px;
+        }
+
+        .divider-mini {
+            width: 120px;
+            height: 14px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 2.7s;
+        }
+
+        .parents {
+            font-size: clamp(1.1rem, 2.3vw, 1.4rem);
+            color: var(--maroon-deep);
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 2.9s;
+        }
+
+        .invite-line {
+            max-width: 460px;
+            font-size: clamp(0.96rem, 1.6vw, 1.1rem);
+            line-height: 1.65;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 3.1s;
+        }
+
+        .peacocks-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 4px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 3.3s;
+        }
+
+        .peacock {
+            width: 28px;
+            height: 28px;
+        }
+
+        .peacock svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: var(--sage);
+            stroke-width: 1.2;
+        }
+
+        .scroll-cue {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeUp 1s ease forwards, bob 2.2s ease-in-out infinite;
+            animation-delay: 4.2s, 4.6s;
+            z-index: 1;
+        }
+
+        .scroll-cue svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 1.4;
+        }
+
+        @keyframes bob {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(8px);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ---------- content sections ---------- */
+        main {
+            position: relative;
+            z-index: 1;
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .duo-row {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: min(6vw, 64px);
+            align-items: center;
+            padding: 90px 0;
+            border-bottom: 1px solid rgba(184, 137, 43, 0.18);
+        }
+
+        .duo-row.flip {
+            grid-template-columns: 0.95fr 1.05fr;
+        }
+
+        .duo-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .duo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .duo-row.flip .duo-text {
+            order: 2;
+            text-align: right;
+            align-items: flex-end;
+        }
+
+        .duo-row:not(.flip) .duo-text {
+            text-align: left;
+            align-items: flex-start;
+        }
+
+        .duo-row.flip .duo-photo {
+            order: 1;
+        }
+
+        .duo-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+            color: var(--maroon-deep);
+        }
+
+        .duo-script {
+            font-size: clamp(2.1rem, 4.6vw, 2.8rem);
+        }
+
+        .duo-body {
+            font-size: clamp(1rem, 1.6vw, 1.15rem);
+            line-height: 1.7;
+            max-width: 420px;
+        }
+
+        .mini-line {
+            width: 70px;
+            height: 10px;
+        }
+
+        .duo-row.flip .mini-line {
+            align-self: flex-end;
+        }
+
+        .directions-btn {
+            margin-top: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border: 1px solid var(--maroon);
+            color: var(--maroon-deep);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        .directions-btn:hover {
+            background: var(--maroon);
+            color: var(--ivory);
+        }
+
+        .directions-btn svg {
+            width: 13px;
+            height: 13px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.6;
+        }
+
+        /* ==================== DIVERSE LUXURY PHOTO LAYOUTS ==================== */
+        .duo-photo {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* --- 1. Royal Arch Dual Frame (Row 1) --- */
+        .photo-arch-duo {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            padding: 8px;
+            width: 100%;
+        }
+
+        .arch-frame {
+            position: relative;
+            width: min(160px, 38vw);
+            aspect-ratio: 3/4;
+            border-radius: 120px 120px 14px 14px;
+            border: 1px solid var(--gold);
+            padding: 5px;
+            background: #fff;
+            box-shadow: 0 12px 30px rgba(123, 30, 43, 0.09);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .arch-frame::before {
+            content: "";
+            position: absolute;
+            inset: 3px;
+            border-radius: 116px 116px 10px 10px;
+            border: 1px solid rgba(184, 137, 43, 0.45);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .arch-frame-left {
+            transform: rotate(-2.5deg);
+        }
+
+        .arch-frame-right {
+            transform: rotate(2.5deg);
+        }
+
+        .arch-frame:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 16px 40px rgba(184, 137, 43, 0.22);
+            z-index: 3;
+        }
+
+        .arch-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 112px 112px 8px 8px;
+            overflow: hidden;
+            background: linear-gradient(160deg, var(--ivory-deep), #fff);
+        }
+
+        .arch-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .arch-badge {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--ivory);
+            border: 1px solid var(--gold);
+            color: var(--maroon-deep);
+            font-family: 'Mrs Saint Delafield', cursive;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+            z-index: 4;
+        }
+
+        /* --- 2. Circular Sacred Mandala Vignette (Row 2) --- */
+        .photo-mandala-vignette {
+            position: relative;
+            width: min(310px, 75vw);
+            aspect-ratio: 1/1;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mandala-ring {
+            position: absolute;
+            inset: -14px;
+            pointer-events: none;
+            animation: rotateSlow 45s linear infinite;
+        }
+
+        @keyframes rotateSlow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .mandala-circle-frame {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            padding: 7px;
+            background: #fff;
+            box-shadow: 0 14px 35px rgba(123, 30, 43, 0.12);
+            transition: transform 0.5s ease;
+        }
+
+        .mandala-circle-frame::before {
+            content: "";
+            position: absolute;
+            inset: 4px;
+            border-radius: 50%;
+            border: 1px dashed rgba(184, 137, 43, 0.5);
+            pointer-events: none;
+        }
+
+        .mandala-circle-frame:hover {
+            transform: scale(1.03);
+        }
+
+        .circle-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            background: linear-gradient(160deg, var(--ivory-deep), #fff);
+        }
+
+        .circle-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .floating-time-chip {
+            position: absolute;
+            bottom: -4px;
+            right: 8px;
+            background: var(--maroon-deep);
+            color: var(--gold-light);
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--gold);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+            z-index: 3;
+        }
+
+        /* --- 3. Editorial 3-Photo Collage Grid (Row 3) --- */
+        .photo-editorial-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            gap: 12px;
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .grid-main-card {
+            grid-row: span 2;
+            position: relative;
+            border: 1px solid var(--gold);
+            padding: 5px;
+            background: #fff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 4px;
+        }
+
+        .grid-main-inner {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: var(--ivory-deep);
+            border-radius: 2px;
+        }
+
+        .grid-main-inner img,
+        .grid-sub-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .grid-main-card:hover img,
+        .grid-sub-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .grid-sub-card {
+            position: relative;
+            border: 1px solid rgba(184, 137, 43, 0.7);
+            padding: 4px;
+            background: #fff;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            border-radius: 4px;
+        }
+
+        .grid-sub-inner {
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            background: var(--ivory-deep);
+            border-radius: 2px;
+        }
+
+        .grid-sub-card-square .grid-sub-inner {
+            aspect-ratio: 1/1;
+        }
+
+        .grid-tag {
+            position: absolute;
+            bottom: 6px;
+            left: 6px;
+            background: rgba(251, 245, 234, 0.92);
+            color: var(--maroon-deep);
+            font-family: 'Cinzel', serif;
+            font-size: 0.55rem;
+            letter-spacing: 0.12em;
+            padding: 3px 8px;
+            border: 1px solid var(--gold);
+            border-radius: 2px;
+        }
+
+        /* --- 4. Panoramic Venue Frame (Row 4) --- */
+        .photo-panoramic-frame {
+            position: relative;
+            width: 100%;
+            max-width: 460px;
+            border: 1px solid var(--gold);
+            padding: 7px;
+            background: #fff;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .panoramic-inner {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/10;
+            border-radius: 6px;
+            overflow: hidden;
+            background: var(--ivory-deep);
+        }
+
+        .panoramic-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .photo-panoramic-frame:hover .panoramic-inner img {
+            transform: scale(1.04);
+        }
+
+        .venue-badge {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            background: rgba(84, 18, 28, 0.88);
+            backdrop-filter: blur(4px);
+            color: var(--ivory);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(228, 199, 125, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.72rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .venue-badge svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--gold-light);
+            flex-shrink: 0;
+        }
+
+        /* --- 5. Layered Polaroid Stack (Row 5) --- */
+        .photo-polaroid-stack {
+            position: relative;
+            width: min(290px, 75vw);
+            height: 360px;
+            margin: 0 auto;
+        }
+
+        .polaroid-back {
+            position: absolute;
+            top: 14px;
+            left: -12px;
+            width: 90%;
+            aspect-ratio: 3/4;
+            background: var(--ivory-deep);
+            border: 1px solid var(--gold);
+            transform: rotate(4.5deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            border-radius: 4px;
+        }
+
+        .polaroid-front {
+            position: absolute;
+            top: 0;
+            left: 10px;
+            width: 92%;
+            aspect-ratio: 3/4;
+            background: #fff;
+            border: 1px solid var(--gold);
+            padding: 9px 9px 40px 9px;
+            transform: rotate(-3deg);
+            box-shadow: 0 14px 32px rgba(123, 30, 43, 0.12);
+            transition: transform 0.5s ease;
+            border-radius: 4px;
+        }
+
+        .photo-polaroid-stack:hover .polaroid-front {
+            transform: rotate(0deg) scale(1.03);
+        }
+
+        .polaroid-inner {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--ivory-deep);
+            border-radius: 2px;
+        }
+
+        .polaroid-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .polaroid-caption {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'Mrs Saint Delafield', cursive;
+            font-size: 1.6rem;
+            color: var(--maroon-deep);
+        }
+
+        /* --- 6. Oval Mirror Frame (Footer) --- */
+        .photo-oval-mirror {
+            position: relative;
+            width: min(310px, 75vw);
+            aspect-ratio: 4/5;
+            margin: 0 auto;
+            border-radius: 50% / 40%;
+            border: 2px solid var(--gold);
+            padding: 7px;
+            background: #fff;
+            box-shadow: 0 16px 40px rgba(123, 30, 43, 0.14);
+            transition: transform 0.5s ease;
+        }
+
+        .photo-oval-mirror::before {
+            content: "";
+            position: absolute;
+            inset: 4px;
+            border-radius: 50% / 40%;
+            border: 1px solid rgba(184, 137, 43, 0.45);
+            pointer-events: none;
+        }
+
+        .photo-oval-mirror:hover {
+            transform: scale(1.03);
+        }
+
+        .oval-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50% / 40%;
+            overflow: hidden;
+            background: linear-gradient(160deg, var(--ivory-deep), #fff);
+        }
+
+        .oval-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Fallback Slot Styling */
+        .slot-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            gap: 8px;
+            color: var(--gold);
+            opacity: 0.7;
+        }
+
+        .slot-inner svg {
+            width: 26px;
+            height: 26px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 1.2;
+        }
+
+        .slot-inner span {
+            font-family: 'Cinzel', serif;
+            font-size: 0.66rem;
+            letter-spacing: 0.16em;
+        }
+
+        .corner-flourish {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            z-index: 2;
+        }
+
+        .corner-flourish svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .cf-tl {
+            top: -2px;
+            left: -2px;
+        }
+
+        .cf-br {
+            bottom: -2px;
+            right: -2px;
+            transform: rotate(180deg);
+        }
+
+        /* ---------- footer / closing photo ---------- */
+        footer {
+            text-align: center;
+            padding: 100px 24px 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 26px;
+        }
+
+        .closing-frame {
+            width: min(340px, 80vw);
+        }
+
+        .footer-script {
+            font-size: clamp(2rem, 5vw, 2.7rem);
+        }
+
+        .footer-sub {
+            font-size: 1rem;
+            opacity: 0.75;
+            letter-spacing: 0.04em;
+        }
+
+        @media (max-width:760px) {
+
+            .duo-row,
+            .duo-row.flip {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                padding: 60px 0;
+                text-align: center !important;
+                align-items: center !important;
+            }
+
+            .duo-row .duo-text,
+            .duo-row.flip .duo-text {
+                order: 1;
+                align-items: center !important;
+            }
+
+            .duo-row .duo-photo,
+            .duo-row.flip .duo-photo {
+                order: 2;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .duo-body {
+                max-width: 100%;
+            }
+
+            .mini-line,
+            .duo-row.flip .mini-line {
+                align-self: center;
+            }
+
+            .frame-corner {
+                width: 64px;
+                height: 64px;
+            }
+
+            .hands-stage {
+                height: 170px;
+            }
+
+            .hand {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.001s !important;
+                animation-delay: 0s !important;
+                transition-duration: 0.001s !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+
+            .hands-overlay {
+                display: none;
+            }
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--maroon);
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-label="Wedding invitation">
+
+        <div class="frame-corner frame-tl"><svg viewBox="0 0 120 120">
+                <path class="hairline" d="M6,6 C6,50 20,80 60,90 M6,6 C50,6 80,20 90,60 M6,6 C6,20 12,26 26,26" />
+                <circle cx="26" cy="26" r="3" fill="var(--rose)" stroke="none" />
+            </svg></div>
+        <div class="frame-corner frame-tr"><svg viewBox="0 0 120 120">
+                <path class="hairline" d="M6,6 C6,50 20,80 60,90 M6,6 C50,6 80,20 90,60 M6,6 C6,20 12,26 26,26" />
+                <circle cx="26" cy="26" r="3" fill="var(--rose)" stroke="none" />
+            </svg></div>
+        <div class="frame-corner frame-bl"><svg viewBox="0 0 120 120">
+                <path class="hairline" d="M6,6 C6,50 20,80 60,90 M6,6 C50,6 80,20 90,60 M6,6 C6,20 12,26 26,26" />
+                <circle cx="26" cy="26" r="3" fill="var(--rose)" stroke="none" />
+            </svg></div>
+        <div class="frame-corner frame-br"><svg viewBox="0 0 120 120">
+                <path class="hairline" d="M6,6 C6,50 20,80 60,90 M6,6 C50,6 80,20 90,60 M6,6 C6,20 12,26 26,26" />
+                <circle cx="26" cy="26" r="3" fill="var(--rose)" stroke="none" />
+            </svg></div>
+
+        <!-- HANDS INTRO: Real Bride and Groom holding hands animation -->
+        <div class="hands-overlay" aria-hidden="true">
+            <div class="hands-stage">
+                <!-- Clasped Interlocked Real Holding Hands Image -->
+                <div class="hand-real-clasped">
+                    <img src="clasped_hands.png" alt="Bride &amp; Groom Holding Hands">
+                </div>
+
+                <!-- Radiant Gold Aura Pulse -->
+                <div class="contact-glow"></div>
+            </div>
+        </div>
+
+        <div class="hero-inner">
+
+            <!-- reserved space: drop the Ganapathi logo (transparent PNG) in here -->
+            <div class="logo-slot" title="Ganapathi Logo Slot">
+                <img src="gana21.png" alt="Ganapathi Logo" class="ganapathi-img">
+            </div>
+
+            <div class="we-invite">
+                <span class="eyebrow">With the blessings of the almighty</span>
+                <span class="we-invite-line">We invite you to our wedding</span>
+            </div>
+
+            <div class="names-row">
+                <span class="name name-left script">Nimisha</span>
+                <span class="with-word">&amp;</span>
+                <span class="name name-right script">Arun</span>
+            </div>
+
+            <div class="divider-mini">
+                <svg viewBox="0 0 120 14">
+                    <path class="hairline" style="stroke-dasharray:130;stroke-dashoffset:130;"
+                        d="M0,7 C30,7 40,1 60,1 C80,1 90,7 120,7" />
+                </svg>
+            </div>
+
+            <p class="parents">Sri. Mohandas &amp; Smt. Shyjubai</p>
+            <p class="invite-line">cordially invite you and your family to grace the wedding ceremony of their beloved
+                daughter</p>
+
+            <div class="peacocks-row">
+                <span class="peacock"><svg viewBox="0 0 30 30">
+                        <path d="M15 26c-3-6-3-12 0-18M15 26c3-6 3-12 0-18M6 12c3-4 6-4 9-2M24 12c-3-4-6-4-9-2" />
+                        <circle cx="15" cy="6" r="1.6" fill="var(--sage)" stroke="none" />
+                    </svg></span>
+                <span class="peacock"><svg viewBox="0 0 30 30" style="transform:scaleX(-1)">
+                        <path d="M15 26c-3-6-3-12 0-18M15 26c3-6 3-12 0-18M6 12c3-4 6-4 9-2M24 12c-3-4-6-4-9-2" />
+                        <circle cx="15" cy="6" r="1.6" fill="var(--sage)" stroke="none" />
+                    </svg></span>
+            </div>
+        </div>
+
+        <div class="scroll-cue" aria-hidden="true">
+            <svg viewBox="0 0 20 20">
+                <path d="M4 7 L10 13 L16 7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </div>
+    </section>
+
+    <main>
+
+        <!-- ROW 1: Save the Date — Royal Arch Dual Frame (Photo 1 & Photo 5) -->
+        <div class="duo-row reveal">
+            <div class="duo-text">
+                <span class="eyebrow">Save the Date</span>
+                <span class="duo-script script">Sunday, 25th October 2026</span>
+                <div class="mini-line"><svg viewBox="0 0 70 10">
+                        <path class="hairline" style="stroke-dasharray:80;stroke-dashoffset:80;"
+                            d="M0,5 C20,5 26,1 35,1 C44,1 50,5 70,5" />
+                    </svg></div>
+                <p class="duo-body">A day of prayers, blessings, and celebration as Nimisha and Arun begin their journey
+                    together.</p>
+            </div>
+            <div class="duo-photo">
+                <div class="photo-arch-duo">
+                    <div class="arch-frame arch-frame-left">
+                        <div class="arch-inner">
+                            <img src="photo1.jpg" alt="Nimisha &amp; Arun"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="slot-inner" style="display:none;"><svg viewBox="0 0 24 24">
+                                    <rect x="3" y="5" width="18" height="14" rx="1" />
+                                    <circle cx="8.5" cy="10" r="1.5" />
+                                    <path d="M21 16l-5-5-4 4-3-3-6 6" />
+                                </svg><span>Photo 01</span></div>
+                        </div>
+                    </div>
+                    <div class="arch-badge">&amp;</div>
+                    <div class="arch-frame arch-frame-right">
+                        <div class="arch-inner">
+                            <img src="photo5.jpg" alt="Nimisha &amp; Arun"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="slot-inner" style="display:none;"><svg viewBox="0 0 24 24">
+                                    <rect x="3" y="5" width="18" height="14" rx="1" />
+                                    <circle cx="8.5" cy="10" r="1.5" />
+                                    <path d="M21 16l-5-5-4 4-3-3-6 6" />
+                                </svg><span>Photo 05</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROW 2: Muhurtham — Circular Mandala Vignette (Photo 2) -->
+        <div class="duo-row flip reveal">
+            <div class="duo-text">
+                <span class="eyebrow">Muhurtham</span>
+                <span class="duo-script script">10:30 AM &amp; 12:00 PM</span>
+                <div class="mini-line"><svg viewBox="0 0 70 10">
+                        <path class="hairline" style="stroke-dasharray:80;stroke-dashoffset:80;"
+                            d="M0,5 C20,5 26,1 35,1 C44,1 50,5 70,5" />
+                    </svg></div>
+                <p class="duo-body">The sacred rites will be performed at the auspicious hour, in the presence of family
+                    and loved ones.</p>
+            </div>
+            <div class="duo-photo">
+                <div class="photo-mandala-vignette">
+                    <svg class="mandala-ring" viewBox="0 0 240 240" fill="none" stroke="var(--gold)" stroke-width="1.2">
+                        <circle cx="120" cy="120" r="114" stroke-dasharray="4,6" opacity="0.6" />
+                        <circle cx="120" cy="120" r="108" opacity="0.4" />
+                        <path d="M120 4 C116 14 124 14 120 24 C116 14 124 14 120 4" />
+                        <path d="M120 236 C116 226 124 226 120 216 C116 226 124 226 120 236" />
+                        <path d="M4 120 C14 116 14 124 24 120 C14 116 14 124 4 120" />
+                        <path d="M236 120 C226 116 226 124 216 120 C226 116 226 124 236 120" />
+                    </svg>
+                    <div class="mandala-circle-frame">
+                        <div class="circle-inner">
+                            <img src="photo2.jpg" alt="Muhurtham"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="slot-inner" style="display:none;"><svg viewBox="0 0 24 24">
+                                    <rect x="3" y="5" width="18" height="14" rx="1" />
+                                    <circle cx="8.5" cy="10" r="1.5" />
+                                    <path d="M21 16l-5-5-4 4-3-3-6 6" />
+                                </svg><span>Photo 02</span></div>
+                        </div>
+                    </div>
+                    <div class="floating-time-chip">10:30 AM</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROW 3: Together Always — Editorial 3-Photo Collage Grid (Photo 3, 5, 2) -->
+        <div class="duo-row reveal">
+            <div class="duo-text">
+                <span class="eyebrow">Together, Always</span>
+                <span class="duo-title">Two hearts, one journey</span>
+                <div class="mini-line"><svg viewBox="0 0 70 10">
+                        <path class="hairline" style="stroke-dasharray:80;stroke-dashoffset:80;"
+                            d="M0,5 C20,5 26,1 35,1 C44,1 50,5 70,5" />
+                    </svg></div>
+                <p class="duo-body">Blessed by our families and guided by tradition, we begin this new chapter with
+                    gratitude and joy.</p>
+            </div>
+            <div class="duo-photo">
+                <div class="photo-editorial-grid">
+                    <div class="grid-main-card">
+                        <div class="grid-main-inner">
+                            <img src="photo3.jpg" alt="Together Always"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="slot-inner" style="display:none;"><svg viewBox="0 0 24 24">
+                                    <rect x="3" y="5" width="18" height="14" rx="1" />
+                                    <circle cx="8.5" cy="10" r="1.5" />
+                                    <path d="M21 16l-5-5-4 4-3-3-6 6" />
+                                </svg><span>Photo 03</span></div>
+                        </div>
+                    </div>
+                    <div class="grid-sub-card grid-sub-card-square">
+                        <div class="grid-sub-inner">
+                            <img src="photo5.jpg" alt="Memories"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="slot-inner" style="display:none;"><svg viewBox="0 0 24 24">
+                                    <rect x="3" y="5" width="18" height="14" rx="1" />
+                                    <circle cx="8.5" cy="10" r="1.5" />
+                                    <path d="M21 16l-5-5-4 4-3-3-6 6" />
+                                </svg><span>Photo 05</span></div>
+                        </div>
+                        <span class="grid-tag">MOMENTS</span>
+                    </div>
+                    <div class="grid-sub-card">
+                        <div class="grid-sub-inner">
+                            <img src="photo2.jpg" alt="Blessed Journey"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="slot-inner" style="display:none;"><svg viewBox="0 0 24 24">
+                                    <rect x="3" y="5" width="18" height="14" rx="1" />
+                                    <circle cx="8.5" cy="10" r="1.5" />
+                                    <path d="M21 16l-5-5-4 4-3-3-6 6" />
+                                </svg><span>Photo 02</span></div>
+                        </div>
+                        <span class="grid-tag">JOURNEY</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROW 4: Venue — Panoramic Frame with Location Tag (Photo 4) -->
+        <div class="duo-row flip reveal">
+            <div class="duo-text">
+                <span class="eyebrow">Venue</span>
+                <span class="duo-title">Peace Convention Centre</span>
+                <div class="mini-line"><svg viewBox="0 0 70 10">
+                        <path class="hairline" style="stroke-dasharray:80;stroke-dashoffset:80;"
+                            d="M0,5 C20,5 26,1 35,1 C44,1 50,5 70,5" />
+                    </svg></div>
+                <p class="duo-body">Kodappali, Parappanangadi</p>
+                <a class="directions-btn" href="https://maps.app.goo.gl/hVsnepBAgHwfPcQw7" target="_blank"
+                    rel="noopener">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z" />
+                        <circle cx="12" cy="9" r="2.4" />
+                    </svg>
+                    Get Directions
+                </a>
+            </div>
+            <div class="duo-photo">
+                <div class="photo-panoramic-frame">
+                    <div class="panoramic-inner">
+                        <img src="photo4.jpg" alt="Peace Convention Centre"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="slot-inner" style="display:none;"><svg viewBox="0 0 24 24">
+                                <rect x="3" y="5" width="18" height="14" rx="1" />
+                                <circle cx="8.5" cy="10" r="1.5" />
+                                <path d="M21 16l-5-5-4 4-3-3-6 6" />
+                            </svg><span>Photo 04</span></div>
+                        <div class="venue-badge">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z" />
+                                <circle cx="12" cy="9" r="2.4" />
+                            </svg>
+                            <span>Peace Convention Centre • Parappanangadi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROW 5: Join Us — Layered Polaroid Stack (Photo 1) -->
+        <div class="duo-row reveal">
+            <div class="duo-text">
+                <span class="eyebrow">Join Us</span>
+                <span class="duo-title">As we begin forever</span>
+                <div class="mini-line"><svg viewBox="0 0 70 10">
+                        <path class="hairline" style="stroke-dasharray:80;stroke-dashoffset:80;"
+                            d="M0,5 C20,5 26,1 35,1 C44,1 50,5 70,5" />
+                    </svg></div>
+                <p class="duo-body">Your presence and blessings would mean the world to us on this special day.</p>
+            </div>
+            <div class="duo-photo">
+                <div class="photo-polaroid-stack">
+                    <div class="polaroid-back"></div>
+                    <div class="polaroid-front">
+                        <div class="polaroid-inner">
+                            <img src="photo1.jpg" alt="Join Us"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="slot-inner" style="display:none;"><svg viewBox="0 0 24 24">
+                                    <rect x="3" y="5" width="18" height="14" rx="1" />
+                                    <circle cx="8.5" cy="10" r="1.5" />
+                                    <path d="M21 16l-5-5-4 4-3-3-6 6" />
+                                </svg><span>Photo 05</span></div>
+                        </div>
+                        <span class="polaroid-caption">Forever &amp; Always</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ============ FOOTER — Oval Mirror Frame (Photo 6) ============ -->
+    <footer>
+        <div class="closing-frame reveal">
+            <div class="photo-oval-mirror">
+                <div class="oval-inner">
+                    <img src="photo6.jpg" alt="Nimisha &amp; Arun"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="slot-inner" style="display:none;"><svg viewBox="0 0 24 24">
+                            <rect x="3" y="5" width="18" height="14" rx="1" />
+                            <circle cx="8.5" cy="10" r="1.5" />
+                            <path d="M21 16l-5-5-4 4-3-3-6 6" />
+                        </svg><span>Photo 06</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="reveal" style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+            <span class="footer-script script">Nimisha &amp; Arun</span>
+            <p class="footer-sub">Best wishes from family and friends</p>
+        </div>
+    </footer>
+
+    <script>
+        if (window.location.search.includes('static')) {
+            const overlay = document.querySelector('.hands-overlay');
+            if (overlay) overlay.style.display = 'none';
+            document.querySelectorAll('.hero-inner > *, .reveal').forEach(el => {
+                el.classList.add('visible');
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+                el.style.animation = 'none';
+            });
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+
+</html>
