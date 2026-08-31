@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&family=Gayathri:wght@400;700&family=Manjari:wght@400;700&family=Noto+Serif+Malayalam:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <style>
         :root {
@@ -39,6 +39,7 @@
             font-family: 'Cormorant Garamond', serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            transition: font-family 0.3s ease;
         }
 
         body::before {
@@ -367,6 +368,31 @@
             opacity: 0;
             animation: fadeUp 1s ease forwards;
             animation-delay: 2.5s;
+        }
+
+        body.lang-ml .names-row-en {
+            display: none !important;
+        }
+
+        body:not(.lang-ml) .names-row-ml {
+            display: none !important;
+        }
+
+        .name-calligraphy-img {
+            height: clamp(65px, 14vw, 115px);
+            width: auto;
+            max-width: min(240px, 42vw);
+            object-fit: contain;
+            filter: drop-shadow(0 3px 10px rgba(84, 18, 28, 0.16));
+            transition: transform 0.35s ease;
+        }
+
+        .name-calligraphy-img:hover {
+            transform: scale(1.05);
+        }
+
+        .names-row-ml .with-word {
+            top: 0;
         }
 
         .name {
@@ -1115,6 +1141,245 @@
                 width: 120px;
                 height: 120px;
             }
+
+            .lang-bar-container {
+                top: 12px;
+                padding: 3px 5px;
+            }
+
+            .lang-btn {
+                font-size: 0.65rem;
+                padding: 5px 13px;
+            }
+        }
+
+        /* ==================== LANGUAGE BAR ==================== */
+        .lang-bar-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            background: rgba(251, 245, 234, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(184, 137, 43, 0.45);
+            border-radius: 30px;
+            padding: 4px 6px;
+            box-shadow: 0 8px 24px rgba(84, 18, 28, 0.12), 0 2px 8px rgba(184, 137, 43, 0.15);
+            gap: 4px;
+            transition: all 0.35s ease;
+        }
+
+        .lang-bar-container:hover {
+            border-color: var(--gold);
+            box-shadow: 0 10px 28px rgba(84, 18, 28, 0.18), 0 4px 12px rgba(184, 137, 43, 0.22);
+        }
+
+        .lang-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 8px;
+            padding-right: 2px;
+            color: var(--gold);
+        }
+
+        .lang-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.6;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.74rem;
+            letter-spacing: 0.14em;
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            color: var(--ink);
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.25, 1);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .lang-btn.active {
+            background: var(--maroon);
+            color: var(--ivory);
+            box-shadow: 0 2px 10px rgba(123, 30, 43, 0.35);
+        }
+
+        .lang-btn:not(.active):hover {
+            color: var(--maroon);
+            background: rgba(184, 137, 43, 0.12);
+        }
+
+        .lang-btn[data-lang="ml"] {
+            font-family: 'Gayathri', 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        /* ==================== MALAYALAM TYPOGRAPHY OVERRIDES ==================== */
+        body.lang-ml {
+            font-family: 'Noto Serif Malayalam', 'Gayathri', serif;
+        }
+
+        body.lang-ml .script {
+            font-family: 'Manjari', 'Gayathri', cursive, serif;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            line-height: 1.15;
+        }
+
+        body.lang-ml .name {
+            font-size: clamp(2.3rem, 7.2vw, 4.4rem);
+            letter-spacing: 0.01em;
+        }
+
+        body.lang-ml .eyebrow {
+            font-family: 'Gayathri', 'Cinzel', serif;
+            font-size: 0.84rem;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+        }
+
+        body.lang-ml .we-invite-line {
+            font-family: 'Noto Serif Malayalam', serif;
+            font-size: clamp(1rem, 2.2vw, 1.35rem);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        body.lang-ml .parents {
+            font-family: 'Noto Serif Malayalam', serif;
+            font-size: clamp(1.05rem, 2.1vw, 1.35rem);
+            font-weight: 700;
+        }
+
+        body.lang-ml .invite-line {
+            font-family: 'Noto Serif Malayalam', serif;
+            font-size: clamp(0.92rem, 1.5vw, 1.05rem);
+            line-height: 1.8;
+        }
+
+        body.lang-ml .duo-title {
+            font-family: 'Noto Serif Malayalam', serif;
+            font-size: clamp(1.2rem, 2.3vw, 1.65rem);
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .join-us-row .duo-text {
+            text-align: center !important;
+            align-items: center !important;
+        }
+
+        .join-us-row .mini-line {
+            align-self: center !important;
+        }
+
+        body.lang-ml .duo-script {
+            font-family: 'Manjari', 'Gayathri', serif;
+            font-weight: 700;
+            font-size: clamp(1.12rem, 2.2vw, 1.6rem);
+            line-height: 1.35;
+        }
+
+        body.lang-ml .duo-body {
+            font-family: 'Noto Serif Malayalam', 'Gayathri', serif;
+            font-size: clamp(0.92rem, 1.45vw, 1.05rem);
+            line-height: 1.85;
+        }
+
+        body.lang-ml .directions-btn {
+            font-family: 'Gayathri', 'Cinzel', serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            font-weight: 700;
+        }
+
+        body.lang-ml .venue-badge,
+        body.lang-ml .floating-time-chip,
+        body.lang-ml .grid-tag {
+            font-family: 'Gayathri', serif;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        body.lang-ml .footer-script {
+            font-family: 'Manjari', 'Gayathri', serif;
+            font-size: clamp(1.9rem, 4.4vw, 2.5rem);
+            font-weight: 700;
+        }
+
+        body.lang-ml .footer-sub {
+            font-family: 'Noto Serif Malayalam', serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ==================== HOUSE / RESIDENCE CARD STYLING ==================== */
+        .photo-house-frame {
+            position: relative;
+            width: 100%;
+            max-width: 460px;
+            border: 1px solid var(--gold);
+            padding: 7px;
+            background: #fff;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .photo-house-frame:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(123, 30, 43, 0.16);
+        }
+
+        .house-inner {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/10;
+            border-radius: 6px;
+            overflow: hidden;
+            background: linear-gradient(160deg, var(--ivory-deep), #fff);
+        }
+
+        .house-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .photo-house-frame:hover .house-inner img {
+            transform: scale(1.05);
+        }
+
+        .house-badge {
+            background: rgba(84, 18, 28, 0.92);
+        }
+
+        /* Language crossfade transition effect */
+        .lang-fade {
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .lang-switching {
+            opacity: 0.2;
+            transform: translateY(4px);
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1142,6 +1407,21 @@
 </head>
 
 <body>
+
+    <!-- ============ FLOATING LANGUAGE BAR ============ -->
+    <nav class="lang-bar-container" aria-label="Language selector">
+        <span class="lang-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+        </span>
+        <button type="button" class="lang-btn active" data-lang="en" onclick="setLanguage('en')"
+            aria-label="Switch to English">English</button>
+        <button type="button" class="lang-btn" data-lang="ml" onclick="setLanguage('ml')"
+            aria-label="മലയാളത്തിലേക്ക് മാറ്റുക">മലയാളം</button>
+    </nav>
 
     <!-- ============ HERO ============ -->
     <section class="hero" aria-label="Wedding invitation">
@@ -1184,14 +1464,22 @@
             </div>
 
             <div class="we-invite">
-                <span class="eyebrow">With the blessings of the almighty</span>
-                <span class="we-invite-line">We invite you to our wedding</span>
+                <span class="eyebrow lang-fade" data-en="With the blessings of the almighty"
+                    data-ml="സർവ്വേശ്വരന്റെ അനുഗ്രഹത്തോടെ">With the blessings of the almighty</span>
+                <span class="we-invite-line lang-fade" data-en="We invite you to our wedding"
+                    data-ml="ഞങ്ങളുടെ വിവാഹത്തിലേക്ക് സ്നേഹപൂർവ്വം സ്വാഗതം ചെയ്യുന്നു">We invite you to our
+                    wedding</span>
             </div>
 
-            <div class="names-row">
+            <div class="names-row names-row-en">
                 <span class="name name-left script">Nimisha</span>
                 <span class="with-word">&amp;</span>
                 <span class="name name-right script">Arun</span>
+            </div>
+            <div class="names-row names-row-ml">
+                <img src="nimmi1.png" alt="നിമിഷ" class="name-calligraphy-img name-left">
+                <span class="with-word">&amp;</span>
+                <img src="arun1.png" alt="അരുൺ" class="name-calligraphy-img name-right">
             </div>
 
             <div class="divider-mini">
@@ -1201,8 +1489,12 @@
                 </svg>
             </div>
 
-            <p class="parents">Sri. Mohandas &amp; Smt. Shyjubai</p>
-            <p class="invite-line">cordially invite you and your family to grace the wedding ceremony of our beloved
+            <p class="parents lang-fade" data-en="Sri. Mohandas &amp; Smt. Shyjubai"
+                data-ml="ശ്രീ. മോഹൻദാസ് &amp; ശ്രീമതി. ഷൈജുബായി">Sri. Mohandas &amp; Smt. Shyjubai</p>
+            <p class="invite-line lang-fade"
+                data-en="cordially invite you and your family to grace the wedding ceremony of our beloved daughter"
+                data-ml="ഞങ്ങളുടെ പ്രിയപുത്രിയുടെ വിവാഹമംഗള കർമ്മത്തിലേക്ക് താങ്കളെയും കുടുംബത്തെയും സാദരം ക്ഷണിച്ചുകൊള്ളുന്നു.">
+                cordially invite you and your family to grace the wedding ceremony of our beloved
                 daughter</p>
 
             <div class="peacocks-row">
@@ -1229,13 +1521,17 @@
         <!-- ROW 1: Save the Date — Royal Arch Dual Frame (Photo 1 & Photo 5) -->
         <div class="duo-row reveal">
             <div class="duo-text">
-                <span class="eyebrow">Save the Date</span>
-                <span class="duo-script script">Sunday, 25th October 2026</span>
+                <span class="eyebrow lang-fade" data-en="Save the Date" data-ml="തിയ്യതി കുറിക്കാം">Save the Date</span>
+                <span class="duo-script script lang-fade" data-en="Sunday, 25th October 2026"
+                    data-ml="2026 ഒക്ടോബർ 25, ഞായർ">Sunday, 25th October 2026</span>
                 <div class="mini-line"><svg viewBox="0 0 70 10">
                         <path class="hairline" style="stroke-dasharray:80;stroke-dashoffset:80;"
                             d="M0,5 C20,5 26,1 35,1 C44,1 50,5 70,5" />
                     </svg></div>
-                <p class="duo-body">A day of prayers, blessings, and celebration as Nimisha and Arun begin their journey
+                <p class="duo-body lang-fade"
+                    data-en="A day of prayers, blessings, and celebration as Nimisha and Arun begin their journey together."
+                    data-ml="നിമിഷയും അരുണും ഒന്നാകുന്ന ഈ ശുഭദിനത്തിൽ പ്രാർത്ഥനകളും അനുഗ്രഹങ്ങളുമായി ഒത്തുചേരാം.">A day
+                    of prayers, blessings, and celebration as Nimisha and Arun begin their journey
                     together.</p>
             </div>
             <div class="duo-photo">
@@ -1270,13 +1566,17 @@
         <!-- ROW 2: Muhurtham — Circular Mandala Vignette (Photo 2) -->
         <div class="duo-row flip reveal">
             <div class="duo-text">
-                <span class="eyebrow">Muhurtham</span>
-                <span class="duo-script script">10:30 AM &amp; 12:00 PM</span>
+                <span class="eyebrow lang-fade" data-en="Muhurtham" data-ml="ശുഭ മുഹൂർത്തം">Muhurtham</span>
+                <span class="duo-script script lang-fade" data-en="10:30 AM &amp; 12:00 PM"
+                    data-ml="രാവിലെ 10:30 നും 12:00 നും ഇടയിൽ">10:30 AM &amp; 12:00 PM</span>
                 <div class="mini-line"><svg viewBox="0 0 70 10">
                         <path class="hairline" style="stroke-dasharray:80;stroke-dashoffset:80;"
                             d="M0,5 C20,5 26,1 35,1 C44,1 50,5 70,5" />
                     </svg></div>
-                <p class="duo-body">The sacred rites will be performed at the auspicious hour, in the presence of family
+                <p class="duo-body lang-fade"
+                    data-en="The sacred rites will be performed at the auspicious hour, in the presence of family and loved ones."
+                    data-ml="കുടുംബാംഗങ്ങളുടെയും പ്രിയപ്പെട്ടവരുടെയും സാന്നിധ്യത്തിൽ മംഗളമുഹൂർത്തത്തിൽ പുണ്യകർമ്മങ്ങൾ നടക്കുന്നു.">
+                    The sacred rites will be performed at the auspicious hour, in the presence of family
                     and loved ones.</p>
             </div>
             <div class="duo-photo">
@@ -1300,7 +1600,7 @@
                                 </svg><span>Photo 02</span></div>
                         </div>
                     </div>
-                    <div class="floating-time-chip">10:30 AM</div>
+                    <div class="floating-time-chip lang-fade" data-en="10:30 AM" data-ml="രാവിലെ 10:30">10:30 AM</div>
                 </div>
             </div>
         </div>
@@ -1308,13 +1608,18 @@
         <!-- ROW 3: Together Always — Editorial 3-Photo Collage Grid (Photo 3, 5, 2) -->
         <div class="duo-row reveal">
             <div class="duo-text">
-                <span class="eyebrow">Together, Always</span>
-                <span class="duo-title">Two hearts, one journey</span>
+                <span class="eyebrow lang-fade" data-en="Together, Always" data-ml="എന്നെന്നും ഒന്നായി">Together,
+                    Always</span>
+                <span class="duo-title lang-fade" data-en="Two hearts, one journey"
+                    data-ml="രണ്ട് മനസ്സുകൾ, ഒരു ജീവിതം">Two hearts, one journey</span>
                 <div class="mini-line"><svg viewBox="0 0 70 10">
                         <path class="hairline" style="stroke-dasharray:80;stroke-dashoffset:80;"
                             d="M0,5 C20,5 26,1 35,1 C44,1 50,5 70,5" />
                     </svg></div>
-                <p class="duo-body">Blessed by our families and guided by tradition, we begin this new chapter with
+                <p class="duo-body lang-fade"
+                    data-en="Blessed by our families and guided by tradition, we begin this new chapter with gratitude and joy."
+                    data-ml="കുടുംബങ്ങളുടെ അനുഗ്രഹത്തോടെയും പാരമ്പര്യത്തിന്റെ നിറവിലും ഞങ്ങൾ ഈ പുതിയ അധ്യായത്തിലേക്ക് കടക്കുന്നു.">
+                    Blessed by our families and guided by tradition, we begin this new chapter with
                     gratitude and joy.</p>
             </div>
             <div class="duo-photo">
@@ -1340,7 +1645,7 @@
                                     <path d="M21 16l-5-5-4 4-3-3-6 6" />
                                 </svg><span>Photo 05</span></div>
                         </div>
-                        <span class="grid-tag">MOMENTS</span>
+                        <span class="grid-tag lang-fade" data-en="MOMENTS" data-ml="ഓർമ്മകൾ">MOMENTS</span>
                     </div>
                     <div class="grid-sub-card">
                         <div class="grid-sub-inner">
@@ -1352,7 +1657,7 @@
                                     <path d="M21 16l-5-5-4 4-3-3-6 6" />
                                 </svg><span>Photo 02</span></div>
                         </div>
-                        <span class="grid-tag">JOURNEY</span>
+                        <span class="grid-tag lang-fade" data-en="JOURNEY" data-ml="യാത്ര">JOURNEY</span>
                     </div>
                 </div>
             </div>
@@ -1361,20 +1666,22 @@
         <!-- ROW 4: Venue — Panoramic Frame with Location Tag (Photo 4) -->
         <div class="duo-row flip reveal">
             <div class="duo-text">
-                <span class="eyebrow">Venue</span>
-                <span class="duo-title">Peace Convention Centre</span>
+                <span class="eyebrow lang-fade" data-en="Wedding Venue" data-ml="വിവാഹ വേദി">Wedding Venue</span>
+                <span class="duo-title lang-fade" data-en="Peace Convention Centre" data-ml="പീസ് കൺവെൻഷൻ സെന്റർ">Peace
+                    Convention Centre</span>
                 <div class="mini-line"><svg viewBox="0 0 70 10">
                         <path class="hairline" style="stroke-dasharray:80;stroke-dashoffset:80;"
                             d="M0,5 C20,5 26,1 35,1 C44,1 50,5 70,5" />
                     </svg></div>
-                <p class="duo-body">Kodappali, Parappanangadi</p>
+                <p class="duo-body lang-fade" data-en="Kodappali, Parappanangadi" data-ml="കൊടപ്പാളി, പരപ്പനങ്ങാടി">
+                    Kodappali, Parappanangadi</p>
                 <a class="directions-btn" href="https://maps.app.goo.gl/hVsnepBAgHwfPcQw7" target="_blank"
                     rel="noopener">
                     <svg viewBox="0 0 24 24">
                         <path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z" />
                         <circle cx="12" cy="9" r="2.4" />
                     </svg>
-                    Get Directions
+                    <span class="lang-fade" data-en="Get Directions" data-ml="വേദി വഴി അറിയാൻ">Get Directions</span>
                 </a>
             </div>
             <div class="duo-photo">
@@ -1392,23 +1699,60 @@
                                 <path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z" />
                                 <circle cx="12" cy="9" r="2.4" />
                             </svg>
-                            <span>Peace Convention Centre • Parappanangadi</span>
+                            <span class="lang-fade" data-en="Peace Convention Centre • Parappanangadi"
+                                data-ml="പീസ് കൺവെൻഷൻ സെന്റർ • പരപ്പനങ്ങാടി">Peace Convention Centre •
+                                Parappanangadi</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ROW 5: Join Us — Layered Polaroid Stack (Photo 1) -->
+        <!-- ROW 5: House / Residence Directions -->
         <div class="duo-row reveal">
             <div class="duo-text">
-                <span class="eyebrow">Join Us</span>
-                <span class="duo-title">As we begin forever</span>
+                <span class="eyebrow lang-fade" data-en="Residence" data-ml="ഗൃഹം / വസതി">Residence</span>
+                <span class="duo-title lang-fade" data-en="House Directions" data-ml="ഭവനത്തിലേക്ക്">House
+                    Directions</span>
                 <div class="mini-line"><svg viewBox="0 0 70 10">
                         <path class="hairline" style="stroke-dasharray:80;stroke-dashoffset:80;"
                             d="M0,5 C20,5 26,1 35,1 C44,1 50,5 70,5" />
                     </svg></div>
-                <p class="duo-body">Your presence and blessings would mean the world to us on this special day.</p>
+                <p class="duo-body lang-fade"
+                    data-en="Sri. Mohandas &amp; Smt. Shyjubai Residence, Kottappuram - Kakkanchery Road. For family and guests joining us directly at home."
+                    data-ml="ശ്രീ. മോഹൻദാസ് &amp; ശ്രീമതി. ഷൈജുബായി വസതി, കൊട്ടപ്പുറം - കാക്കഞ്ചേരി റോഡ്. വിവാഹ ചടങ്ങുകൾക്ക് മുന്നോടിയായും ശേഷവും ഭവനത്തിലേക്ക് എത്തുന്നവർക്കായി.">
+                    Sri. Mohandas &amp; Smt. Shyjubai Residence, Kottappuram - Kakkanchery Road. For family and guests
+                    joining us
+                    directly at home.</p>
+                <a class="directions-btn" href="https://maps.app.goo.gl/ipzE8pNzttqhBG3Q8" target="_blank"
+                    rel="noopener">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg>
+                    <span class="lang-fade" data-en="House Directions" data-ml="വീട്ടു വഴി അറിയാൻ">House
+                        Directions</span>
+                </a>
+            </div>
+            <div class="duo-photo">
+
+            </div>
+        </div>
+
+        <!-- ROW 6: Join Us — Layered Polaroid Stack (Photo 1) -->
+        <div class="duo-row flip reveal join-us-row">
+            <div class="duo-text">
+                <span class="eyebrow lang-fade" data-en="Join Us" data-ml="സാദരം ക്ഷണിക്കുന്നു">Join Us</span>
+                <span class="duo-title lang-fade" data-en="As we begin forever"
+                    data-ml="സ്നേഹത്തോടെ കാത്തിരിക്കുന്നു">As we begin forever</span>
+                <div class="mini-line"><svg viewBox="0 0 70 10">
+                        <path class="hairline" style="stroke-dasharray:80;stroke-dashoffset:80;"
+                            d="M0,5 C20,5 26,1 35,1 C44,1 50,5 70,5" />
+                    </svg></div>
+                <p class="duo-body lang-fade"
+                    data-en="Your presence and blessings would mean the world to us on this special day."
+                    data-ml="ഈ പുണ്യദിനത്തിൽ താങ്കളുടെ സാന്നിധ്യവും അനുഗ്രഹവും ഞങ്ങൾക്ക് ഏറ്റവും വലിയ സന്തോഷമാണ്.">Your
+                    presence and blessings would mean the world to us on this special day.</p>
             </div>
             <div class="duo-photo">
                 <div class="photo-polaroid-stack">
@@ -1423,7 +1767,8 @@
                                     <path d="M21 16l-5-5-4 4-3-3-6 6" />
                                 </svg><span>Photo 05</span></div>
                         </div>
-                        <span class="polaroid-caption">Forever &amp; Always</span>
+                        <span class="polaroid-caption lang-fade" data-en="Forever &amp; Always"
+                            data-ml="Forever &amp; Always">Forever &amp; Always</span>
                     </div>
                 </div>
             </div>
@@ -1447,12 +1792,55 @@
             </div>
         </div>
         <div class="reveal" style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-            <span class="footer-script script">Nimisha &amp; Arun</span>
-            <p class="footer-sub">Best wishes from family and friends</p>
+            <span class="footer-script script lang-fade" data-en="Nimisha &amp; Arun" data-ml="നിമിഷ &amp; അരുൺ">Nimisha
+                &amp; Arun</span>
+            <p class="footer-sub lang-fade" data-en="Best wishes from family and friends"
+                data-ml="കുടുംബാംഗങ്ങളുടെയും സുഹൃത്തുക്കളുടെയും സ്നേഹാശംസകളോടെ">Best wishes from family and friends</p>
         </div>
     </footer>
 
     <script>
+        function setLanguage(lang) {
+            const isMalayalam = (lang === 'ml');
+            if (isMalayalam) {
+                document.body.classList.add('lang-ml');
+            } else {
+                document.body.classList.remove('lang-ml');
+            }
+            document.documentElement.lang = isMalayalam ? 'ml' : 'en';
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const targetText = el.getAttribute(`data-${lang}`);
+                if (targetText !== null) {
+                    el.classList.add('lang-switching');
+                    setTimeout(() => {
+                        el.innerHTML = targetText;
+                        el.classList.remove('lang-switching');
+                    }, 120);
+                }
+            });
+
+            try {
+                localStorage.setItem('wedding_lang_pref', lang);
+            } catch (err) { }
+        }
+
+        // Initialize language from localStorage
+        try {
+            const savedLanguage = localStorage.getItem('wedding_lang_pref');
+            if (savedLanguage === 'ml') {
+                setLanguage('ml');
+            }
+        } catch (err) { }
+
         if (window.location.search.includes('static')) {
             const overlay = document.querySelector('.hands-overlay');
             if (overlay) overlay.style.display = 'none';
